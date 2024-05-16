@@ -33,6 +33,7 @@ Remove this log in next.config.js.
 
 const plugins = [
   withTamagui({
+    appDir: true,
     config: '../../packages/config/src/tamagui.config.ts',
     components: ['tamagui', '@my/ui'],
     importsWhitelist: ['constants.js', 'colors.js'],
