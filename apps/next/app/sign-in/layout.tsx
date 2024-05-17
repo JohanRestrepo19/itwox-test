@@ -1,5 +1,6 @@
 'use client'
 
+import { Container } from 'components'
 import { Section } from 'tamagui'
 
 type Props = {
@@ -7,5 +8,9 @@ type Props = {
 }
 
 export default function SignInLayout({ children }: Props) {
-  return <Section>{children}</Section>
+  return (
+    <Section>
+      <Container>{children}</Container>
+    </Section>
+  )
 }

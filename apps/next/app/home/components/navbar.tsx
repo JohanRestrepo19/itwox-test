@@ -1,17 +1,15 @@
 'use client'
 
-import { useUserContext } from 'contexts/user-context'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { GestureResponderEvent } from 'react-native'
 import { Button, H4, Nav, XStack } from 'tamagui'
+import { useUserContext } from 'contexts/user-context'
 
 export default function HomeNavbar() {
   const { user } = useUserContext()
-  const pathname = usePathname()
 
-  // If I'm in other page different from home, then I no longer need to render this navbar
-  // Because each page has its own layout which renders the respective navbar
-  if (pathname !== '/') return null;
+  //TODO: Implement SignOut logic
+  function handleSignOut(event: GestureResponderEvent) {}
 
   return (
     <Nav backgroundColor={'teal'} opacity={0.95}>
@@ -21,12 +19,14 @@ export default function HomeNavbar() {
         {user ? (
           <XStack gap="$2">
             <Link href="/dashboard">
-              <Button>Dashboard</Button>
+              <Button onPress={handleSignOut}>Dashboard</Button>
             </Link>
             <Button>Sign out</Button>
           </XStack>
         ) : (
-          <Button>Sign In</Button>
+          <Link href="/sign-in">
+            <Button>Sign In</Button>
+          </Link>
         )}
       </XStack>
     </Nav>

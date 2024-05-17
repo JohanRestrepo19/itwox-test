@@ -71,6 +71,9 @@ module.exports = function () {
     experimental: {
       scrollRestoration: true,
     },
+    async redirects() {
+      return [{ source: '/', destination: '/home', permanent: true }]
+    },
   }
 
   for (const plugin of plugins) {
