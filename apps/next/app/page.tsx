@@ -5,7 +5,7 @@ import { H1 } from 'tamagui'
 export default function HomePage() {
   return (
     <>
-      <H1>Hola mundo</H1>
+      <H1>Hello ITwox</H1>
     </>
   )
 }
