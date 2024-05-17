@@ -3246,6 +3246,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "@hookform/resolvers@npm:3.4.0"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: 10/27dcc434fa468e4825f582145f7f787874cb314414daefa88c99644320c75b1b88d0bd043fc8c2a256d6ce6c4cf8e9deea1631a22ed978ac0ef328748d5b8633
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.8":
   version: 0.11.8
   resolution: "@humanwhocodes/config-array@npm:0.11.8"
@@ -15064,6 +15073,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "next-app@workspace:apps/next"
   dependencies:
+    "@hookform/resolvers": "npm:^3.4.0"
     "@tamagui/config": "npm:^1.98.0"
     "@tamagui/next-plugin": "npm:^1.98.0"
     "@tamagui/next-theme": "npm:^1.98.0"
