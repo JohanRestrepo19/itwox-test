@@ -7,14 +7,14 @@ type User = {
   password: string
 }
 
-//TODO: Remove after implementing Sign In logic
-const testUser: User = {
-  username: 'johan@mail.com',
-  password: 'password',
-}
-
 type UserContextType = {
   user: User | undefined
+}
+
+//TODO: Remove after implementing Sign In logic
+const testUser: User | undefined = {
+  username: 'johan@mail.com',
+  password: 'password',
 }
 
 export const UserContext = createContext<UserContextType | null>(null)
@@ -22,9 +22,13 @@ export const UserContext = createContext<UserContextType | null>(null)
 type Props = { children: React.ReactNode }
 
 export default function UserContextProvider({ children }: Props) {
-  const [user, _] = useState<UserContextType | null>(null)
+  const [user, _] = useState<User | undefined>(testUser);
 
-  return <UserContext.Provider value={{ user: testUser }}>{children}</UserContext.Provider>
+  return (
+    <UserContext.Provider value={{ user }}>
+      {children}
+    </UserContext.Provider>
+  )
 }
 
 export function useUserContext() {

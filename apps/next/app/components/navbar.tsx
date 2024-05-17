@@ -11,7 +11,7 @@ export default function HomeNavbar() {
 
   // If I'm in other page different from home, then I no longer need to render this navbar
   // Because each page has its own layout which renders the respective navbar
-  if (pathname !== '/') return
+  if (pathname !== '/') return null;
 
   return (
     <Nav backgroundColor={'teal'} opacity={0.95}>
