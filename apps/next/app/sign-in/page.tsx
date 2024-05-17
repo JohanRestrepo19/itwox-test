@@ -1,13 +1,10 @@
 'use client'
 
-import { Button, Form, H1, Text, YStack } from 'tamagui'
+import { Button, Form, H1, YStack } from 'tamagui'
 import { Controller, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import FormInput from './components/form-input'
-
-type SignInForm = {
-  username: string
-  password: string
-}
+import { SignInSchema, type SignInForm } from './validations/sign-in'
 
 export default function SignInPage() {
   function handleSubmitForm(data: SignInForm) {
@@ -24,6 +21,7 @@ export default function SignInPage() {
       username: '',
       password: '',
     },
+    resolver: zodResolver(SignInSchema),
   })
 
   return (
@@ -42,17 +40,24 @@ export default function SignInPage() {
       >
         <Controller
           control={control}
-          render={({ field }) => <FormInput {...field} title="Username" />}
+          render={({ field }) => (
+            <FormInput {...field} title="Username" error={errors.username?.message} />
+          )}
           name="username"
         />
-        {errors.username?.message && <Text color="$red1">{errors.username.message}</Text>}
 
         <Controller
           control={control}
-          render={({ field }) => <FormInput {...field} title="Password" secureTextEntry />}
+          render={({ field }) => (
+            <FormInput
+              {...field}
+              title="Password"
+              error={errors.password?.message}
+              secureTextEntry
+            />
+          )}
           name="password"
         />
-        {errors.password?.message && <Text color="$red1">{errors.password.message}</Text>}
 
         <Form.Trigger asChild>
           <Button>Submit</Button>
