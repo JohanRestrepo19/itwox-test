@@ -1,12 +1,11 @@
 'use client'
 
-import { HomeScreen } from 'app/features/home/screen'
+import { H1 } from 'tamagui'
 
 export default function HomePage() {
   return (
     <>
-      <h1>hola mundo</h1>
-      <HomeScreen />
+      <H1>Hola mundo</H1>
     </>
   )
 }
