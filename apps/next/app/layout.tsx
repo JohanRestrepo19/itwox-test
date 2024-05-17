@@ -3,6 +3,7 @@
 import UserContextProvider from 'contexts/user-context'
 import { TamaguiProvider } from './TamaguiProvider'
 import HomeNavbar from './components/navbar'
+import { Container } from 'components'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <TamaguiProvider>
           <UserContextProvider>
             <HomeNavbar />
-            {children}
+            <Container>{children}</Container>
           </UserContextProvider>
         </TamaguiProvider>
       </body>
