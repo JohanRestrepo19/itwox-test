@@ -15074,6 +15074,7 @@ __metadata:
     raf: "npm:^3.4.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-hook-form: "npm:^7.51.4"
     react-native: "npm:0.72.6"
     react-native-web: "npm:~0.19.6"
     react-native-web-lite: "npm:^1.98.0"
@@ -16679,6 +16680,15 @@ __metadata:
     react: ^16.6.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
   checksum: 10/73d6383dd5d5794cad3837cf6b71d7e23afa6f3ba745e50a9d0d6bf42ff0ab175e4292f250ffe757f4bd782e64c37c4583fb884340cd63891deb33e144628661
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.51.4":
+  version: 7.51.4
+  resolution: "react-hook-form@npm:7.51.4"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: 10/1edb032284c127756ad4b99be5da55407dac311afa05f534ad882971088efef6c1debd339f2d9783a572fe17f97d206dbeb9b5b0cdd4e7599cd86a3485e45ad0
   languageName: node
   linkType: hard
 
