@@ -2,11 +2,13 @@
 
 import { Button, H4, Nav, XStack } from 'tamagui'
 import { LogIn } from '@tamagui/lucide-icons'
-import { GestureResponderEvent } from 'react-native'
+import { logout } from 'services/auth'
 
 export default function DashboardNavbar() {
-  function handleSignOut(event: GestureResponderEvent) {
-    console.log('This is my event: ', event)
+
+  async function handleSignOut() {
+    console.log('Voy a hacer logout')
+    await logout()
   }
 
   return (

@@ -1,15 +1,17 @@
 'use client'
 
 import Link from 'next/link'
-import { GestureResponderEvent } from 'react-native'
 import { Button, H4, Nav, XStack } from 'tamagui'
 import { useUserContext } from 'contexts/user-context'
+import { logout } from 'services/auth'
 
 export default function HomeNavbar() {
   const { user } = useUserContext()
 
-  //TODO: Implement SignOut logic
-  function handleSignOut(event: GestureResponderEvent) {}
+  async function handleSignOut() {
+    console.log('Voy a hacer logout')
+    await logout()
+  }
 
   return (
     <Nav backgroundColor={'teal'} opacity={0.95}>
@@ -19,9 +21,11 @@ export default function HomeNavbar() {
         {user ? (
           <XStack gap="$2">
             <Link href="/dashboard">
-              <Button onPress={handleSignOut}>Dashboard</Button>
+              <Button>Dashboard</Button>
             </Link>
-            <Button>Sign out</Button>
+            <Button
+              onPress={handleSignOut}
+            >Sign out</Button>
           </XStack>
         ) : (
           <Link href="/sign-in">

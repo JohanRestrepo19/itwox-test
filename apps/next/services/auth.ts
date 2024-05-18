@@ -3,17 +3,23 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged as onAuthStateChangedFirebase,
+  NextOrObserver,
+  User,
 } from 'firebase/auth'
-import { firebaseAuth } from 'setup/firebase'
+import { auth } from 'setup/firebase/client-app'
 import type { SignInResponse, SignUpResponse, UserCredentials } from 'lib/types'
+
+export function onAuthStateChanged(cb: NextOrObserver<User>) {
+  return onAuthStateChangedFirebase(auth, cb)
+}
 
 export async function signUpWithEmail({
   email,
   password,
 }: UserCredentials): Promise<SignUpResponse> {
   try {
-    const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password)
-    console.log('User credentails after creation: ', userCredential) //TODO: remove after testing
+    await createUserWithEmailAndPassword(auth, email, password)
     return { hasError: false }
   } catch (err) {
     const authError = err as AuthError
@@ -26,8 +32,7 @@ export async function signInWithEmail({
   password,
 }: UserCredentials): Promise<SignInResponse> {
   try {
-    const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password)
-    console.log('User credentials after login: ', userCredential) //TODO: Remove after testing
+    const userCredential = await signInWithEmailAndPassword(auth, email, password)
     return { user: userCredential.user, hasError: false }
   } catch (err) {
     const authError = err as AuthError
@@ -36,5 +41,9 @@ export async function signInWithEmail({
 }
 
 export async function logout(): Promise<void> {
-  await signOut(firebaseAuth)
+  try {
+    await signOut(auth)
+  } catch (err) {
+    console.error(err)
+  }
 }

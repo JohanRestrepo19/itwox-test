@@ -1,15 +1,12 @@
 'use client'
 
-import { createContext, useContext, useState } from 'react'
-import { type User } from 'lib/types'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { type User } from 'firebase/auth'
+import { onAuthStateChanged } from 'services/auth'
 
 type UserContextType = {
   user: User | undefined
-}
-
-//TODO: Remove after implementing Sign In logic
-const testUser: User | undefined = {
-  username: 'johan@mail.com',
+  isLoadingUser: boolean
 }
 
 export const UserContext = createContext<UserContextType | null>(null)
@@ -17,9 +14,23 @@ export const UserContext = createContext<UserContextType | null>(null)
 type Props = { children: React.ReactNode }
 
 export default function UserContextProvider({ children }: Props) {
-  const [user, _] = useState<User | undefined>(undefined)
+  const [user, setUser] = useState<User | undefined>(undefined)
+  const [isLoadingUser, setIsLoadingUser] = useState<boolean>(true)
 
-  return <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged((user) => {
+      setIsLoadingUser(true)
+
+      if (user) setUser(user)
+      else setUser(undefined)
+
+      setIsLoadingUser(false)
+
+      return () => unsubscribe()
+    })
+  }, [])
+
+  return <UserContext.Provider value={{ user, isLoadingUser }}>{children}</UserContext.Provider>
 }
 
 export function useUserContext() {
