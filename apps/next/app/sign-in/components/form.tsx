@@ -23,7 +23,6 @@ export default function AuthForm({ onSubmitForm, title, ...props }: Props) {
     resolver: zodResolver(SignInSchema),
   })
 
-  //TODO: Implement Sign In logic
   async function handleSubmitForm(data: SignInForm) {
     await onSubmitForm(data)
     reset()
