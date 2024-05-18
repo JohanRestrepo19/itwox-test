@@ -25,8 +25,6 @@ export default function AuthForm({ onSubmitForm, title, ...props }: Props) {
 
   //TODO: Implement Sign In logic
   async function handleSubmitForm(data: SignInForm) {
-    console.log('Im going to submit')
-    console.log('data: ', data)
     await onSubmitForm(data)
     reset()
   }

@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Spinner, Text, XStack } from 'tamagui'
 import PostCard from './post-card'
@@ -11,12 +10,6 @@ export default function PostList() {
     queryKey: ['posts'],
     queryFn: fetchPosts,
   })
-
-  // Remove after testing
-  useEffect(() => {
-    console.log('Data de los posts')
-    console.log(postsQuery.data)
-  }, [postsQuery])
 
   if (postsQuery.isPending) return <Spinner size="large" color="$green10" />
 

@@ -7,7 +7,6 @@ import { logout } from 'services/auth'
 export default function DashboardNavbar() {
 
   async function handleSignOut() {
-    console.log('Voy a hacer logout')
     await logout()
   }
 

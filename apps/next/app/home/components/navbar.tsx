@@ -9,7 +9,6 @@ export default function HomeNavbar() {
   const { user } = useUserContext()
 
   async function handleSignOut() {
-    console.log('Voy a hacer logout')
     await logout()
   }
 
