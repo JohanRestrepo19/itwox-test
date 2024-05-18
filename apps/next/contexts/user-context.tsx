@@ -1,11 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState } from 'react'
-
-type User = {
-  username: string
-  password: string
-}
+import { type User } from 'lib/types'
 
 type UserContextType = {
   user: User | undefined

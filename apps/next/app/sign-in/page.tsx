@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Button, Form, H1, YStack } from 'tamagui'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -7,10 +8,7 @@ import FormInput from './components/form-input'
 import { SignInSchema, type SignInForm } from './validations/sign-in'
 
 export default function SignInPage() {
-  function handleSubmitForm(data: SignInForm) {
-    console.log('Im going to submit')
-    console.log('data: ', data)
-  }
+  const router = useRouter()
 
   const {
     control,
@@ -23,6 +21,13 @@ export default function SignInPage() {
     },
     resolver: zodResolver(SignInSchema),
   })
+
+  //TODO: Implement Sign In logic
+  function handleSubmitForm(data: SignInForm) {
+    console.log('Im going to submit')
+    console.log('data: ', data)
+    router.push('/dashboard')
+  }
 
   return (
     <YStack gap="$4">

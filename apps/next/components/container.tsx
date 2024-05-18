@@ -1,19 +1,17 @@
-import { View, useMedia, type ViewProps } from 'tamagui'
+'use client'
+import { View, type ViewProps } from 'tamagui'
 
 type Props = ViewProps & { children: React.ReactNode }
 
 export function Container({ children, style, ...props }: Props) {
-  const media = useMedia()
-
-  const maxWidth = media.md ? '1020px' : media.lg ? '1280px' : media.xl ? '1420px' : '100%'
-
   return (
     <View
+      justifyContent="center"
+      alignItems="center"
       style={[
         {
-          maxWidth,
-          marginLeft: 'auto',
-          marginRight: 'auto',
+          marginLeft: '4rem',
+          marginRight: '4rem',
         },
         style,
       ]}
