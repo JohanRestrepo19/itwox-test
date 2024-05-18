@@ -1,73 +1,43 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Button, Form, H1, YStack } from 'tamagui'
-import { Controller, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import FormInput from './components/form-input'
-import { SignInSchema, type SignInForm } from './validations/sign-in'
+import { H1, XStack, YStack } from 'tamagui'
+import { type SignInForm } from './validations/sign-in'
+import AuthForm from './components/form'
+import { signInWithEmail, signUpWithEmail } from 'services/auth'
 
 export default function SignInPage() {
   const router = useRouter()
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignInForm>({
-    defaultValues: {
-      username: '',
-      password: '',
-    },
-    resolver: zodResolver(SignInSchema),
-  })
+  async function handleSignUp(data: SignInForm) {
+    const res = await signUpWithEmail({ email: data.username, password: data.password })
 
-  //TODO: Implement Sign In logic
-  function handleSubmitForm(data: SignInForm) {
-    console.log('Im going to submit')
-    console.log('data: ', data)
+    if (res.hasError) {
+      console.error(res.errorMsg)
+      return
+    }
+
+    // Después de que se crea el usuario existosamente se incicia la sesión automaticamente?
+  }
+
+  async function handleSignIn(data: SignInForm) {
+    const res = await signInWithEmail({ email: data.username, password: data.password })
+
+    if (res.hasError) {
+      console.error(res.errorMsg)
+      return
+    }
+
     router.push('/dashboard')
   }
 
   return (
-    <YStack gap="$4">
-      <H1>Sign In</H1>
-      <Form
-        alignItems="center"
-        minWidth={300}
-        gap="$2"
-        onSubmit={handleSubmit(handleSubmitForm)}
-        borderWidth={1}
-        borderRadius="$4"
-        backgroundColor="$background"
-        borderColor="$borderColor"
-        padding="$8"
-      >
-        <Controller
-          control={control}
-          render={({ field }) => (
-            <FormInput {...field} title="Username" error={errors.username?.message} />
-          )}
-          name="username"
-        />
-
-        <Controller
-          control={control}
-          render={({ field }) => (
-            <FormInput
-              {...field}
-              title="Password"
-              error={errors.password?.message}
-              secureTextEntry
-            />
-          )}
-          name="password"
-        />
-
-        <Form.Trigger asChild>
-          <Button>Submit</Button>
-        </Form.Trigger>
-      </Form>
+    <YStack gap="$4" alignItems='center'>
+      <H1>Auth</H1>
+      <XStack gap="$4" flexWrap='wrap' alignItems='center' justifyContent='center'>
+        <AuthForm title={'Sign Up'} onSubmitForm={handleSignUp} backgroundColor={'lightblue'} />
+        <AuthForm title={'Sign In'} onSubmitForm={handleSignIn} />
+      </XStack>
     </YStack>
   )
 }

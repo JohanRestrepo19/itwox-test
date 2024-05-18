@@ -17,7 +17,7 @@ export const UserContext = createContext<UserContextType | null>(null)
 type Props = { children: React.ReactNode }
 
 export default function UserContextProvider({ children }: Props) {
-  const [user, _] = useState<User | undefined>(testUser)
+  const [user, _] = useState<User | undefined>(undefined)
 
   return <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
 }
