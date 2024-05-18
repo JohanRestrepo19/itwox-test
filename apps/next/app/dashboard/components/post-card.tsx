@@ -2,14 +2,10 @@
 
 import { Card, type CardProps, Text, Heading, Paragraph, Spinner } from 'tamagui'
 import { useQuery } from '@tanstack/react-query'
-import type { Comment, Post } from 'lib/types'
+import { fetchCommentsPerPost } from 'services'
+import type { Post } from 'lib/types'
 
 // TODO: Move to services folder
-async function fetchCommentsPerPost(postId: number): Promise<number> {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
-  const data: Comment[] = await res.json()
-  return data.length || 0
-}
 
 type Props = CardProps & { post: Post }
 export default function PostCard({ post, ...props }: Props) {

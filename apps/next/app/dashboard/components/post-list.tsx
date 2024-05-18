@@ -3,15 +3,8 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Spinner, Text, XStack } from 'tamagui'
-import { type Post } from 'lib/types'
 import PostCard from './post-card'
-
-// TODO: Move to services folder
-async function fetchPosts(): Promise<Post[]> {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  const data: Post[] = await res.json()
-  return data.slice(0, 10) || []
-}
+import { fetchPosts } from 'services'
 
 export default function PostList() {
   const postsQuery = useQuery({
