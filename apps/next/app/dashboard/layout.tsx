@@ -1,6 +1,8 @@
 'use client'
 
-import DashboardNavbar from "./components/navbar"
+import { Container } from 'components'
+import DashboardNavbar from './components/navbar'
+import { Section } from 'tamagui'
 
 type Props = {
   children: React.ReactNode
@@ -8,9 +10,9 @@ type Props = {
 
 export default function DashboardLayout({ children }: Props) {
   return (
-    <section >
+    <Section>
       <DashboardNavbar />
-      {children}
-    </section>
+      <Container>{children}</Container>
+    </Section>
   )
 }
