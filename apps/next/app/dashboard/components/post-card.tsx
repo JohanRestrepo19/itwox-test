@@ -5,8 +5,6 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchCommentsPerPost } from 'services'
 import type { Post } from 'lib/types'
 
-// TODO: Move to services folder
-
 type Props = CardProps & { post: Post }
 export default function PostCard({ post, ...props }: Props) {
   const commentsQuery = useQuery({

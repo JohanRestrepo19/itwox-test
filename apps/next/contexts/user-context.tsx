@@ -10,7 +10,6 @@ type UserContextType = {
 //TODO: Remove after implementing Sign In logic
 const testUser: User | undefined = {
   username: 'johan@mail.com',
-  password: 'password',
 }
 
 export const UserContext = createContext<UserContextType | null>(null)
