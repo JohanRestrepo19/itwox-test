@@ -11,7 +11,7 @@ export default function DashboardNavbar() {
   }
 
   return (
-    <Nav backgroundColor={'teal'} opacity={0.95}>
+    <Nav backgroundColor={'lightblue'} opacity={0.95}>
       <XStack justifyContent="space-between" alignItems="center" p="$2">
         <H4 fontWeight="$4">Dashboard</H4>
         <Button iconAfter={LogIn} onPress={handleSignOut}>

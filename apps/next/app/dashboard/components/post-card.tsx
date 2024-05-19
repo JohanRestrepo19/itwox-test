@@ -22,6 +22,7 @@ export default function PostCard({ post, ...props }: Props) {
       <Card.Footer padded>
         {commentsQuery.isPending ? <Spinner /> : <Text>Post comments: {commentsQuery.data}</Text>}
       </Card.Footer>
+      <Card.Background backgroundColor={'lavender'} />
     </Card>
   )
 }

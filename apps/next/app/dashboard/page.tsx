@@ -1,14 +1,10 @@
-'use client'
-
-import { H1 } from 'tamagui'
+import { Metadata } from 'next'
 import PostList from './components/post-list'
 
+export const metadata: Metadata = {
+  title: 'Dashboard',
+}
 
 export default function DashboardPage() {
-  return (
-    <>
-    <H1>Hello from dashboard page</H1>
-    <PostList />
-    </>
-  )
+  return <PostList />
 }
