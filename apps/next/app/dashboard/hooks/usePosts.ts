@@ -32,7 +32,6 @@ export function usePosts(pageSize = 10) {
   }, [postsQuery.data])
 
   useEffect(() => {
-    // Cuando cambie la página tengo que recalcular los items que muestro
     if (!postsQuery.data) return
 
     let hi = pageSize * currentPage
